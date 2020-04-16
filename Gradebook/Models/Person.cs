@@ -8,8 +8,17 @@ namespace Gradebook.Models
 {
     public class Person : BaseINPC
     {
-        private int _id;
-        private string _firstName, _lastName;
+        private string _id, _firstName, _lastName;
+
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                NotifyPropertyChanged(nameof(Id));
+            }
+        }
 
         public string FirstName
         {
@@ -30,7 +39,5 @@ namespace Gradebook.Models
                 NotifyPropertyChanged(nameof(LastName));
             }
         }
-
-        public int Id { get => _id; set => _id = value; }
     }
 }

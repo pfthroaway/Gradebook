@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Gradebook.Models
 {
     public class SchoolClass : BaseINPC
     {
-        private int _id;
+        private string _id;
         private Course _course;
         private Teacher _teacher;
         private List<int> _students;
         private List<Assignment> _gradebook;
 
-        public int Id
+        public string Id
         {
             get => _id;
             set
