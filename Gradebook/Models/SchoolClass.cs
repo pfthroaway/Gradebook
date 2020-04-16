@@ -2,14 +2,16 @@
 
 namespace Gradebook.Models
 {
+    /// <summary>Represents a class being taught in the <see cref="School"/>.</summary>
     public class SchoolClass : BaseINPC
     {
         private string _id;
         private Course _course;
-        private Teacher _teacher;
-        private List<int> _students;
+        private string _teacher;
+        private List<string> _students;
         private List<Assignment> _gradebook;
 
+        /// <summary>ID of the <see cref="SchoolClass"/>  )e.g., "ENGL 1301-99").</summary>
         public string Id
         {
             get => _id;
@@ -20,6 +22,7 @@ namespace Gradebook.Models
             }
         }
 
+        /// <summary>Course being taught in this <see cref="SchoolClass"/> (e.g., "ENGL 1301").</summary>
         public Course Course
         {
             get => _course;
@@ -30,7 +33,8 @@ namespace Gradebook.Models
             }
         }
 
-        public Teacher Teacher
+        /// <summary>ID of the Teacher teaching this <see cref="SchoolClass"/>.</summary>
+        public string Teacher
         {
             get => _teacher;
             set
@@ -40,6 +44,7 @@ namespace Gradebook.Models
             }
         }
 
+        /// <summary>List of <see cref="Assignment"/>s graded in this class.</summary>
         public List<Assignment> Gradebook
         {
             get => _gradebook;
@@ -50,9 +55,8 @@ namespace Gradebook.Models
             }
         }
 
-        public string Name => $"{Id} - {Course.Name}";
-
-        public List<int> Students
+        /// <summary>List of IDs of all <see cref="Student"/>s enrolled in this <see cref="SchoolClass"/>.</summary>
+        public List<string> Students
         {
             get => _students;
             set

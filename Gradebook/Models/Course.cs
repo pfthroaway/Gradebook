@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Gradebook.Models
+﻿namespace Gradebook.Models
 {
+    /// <summary>Represents a <see cref="Course "/> being taught at the <see cref="School"/>.</summary>
     public class Course : BaseINPC
     {
         private string _name;
 
+        /// <summary>Name of the <see cref="Course"/>, (e.g., "ENGL-1301").</summary>
         public string Name
         {
             get => _name;

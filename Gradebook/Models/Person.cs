@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Gradebook.Models
+﻿namespace Gradebook.Models
 {
+    /// <summary>Represents a living <see cref="Person"/> at the <see cref="School"/>.</summary>
     public class Person : BaseINPC
     {
         private string _id, _firstName, _lastName;
 
+        /// <summary>ID of the <see cref="Person"/>.</summary>
         public string Id
         {
             get => _id;
@@ -20,6 +16,7 @@ namespace Gradebook.Models
             }
         }
 
+        /// <summary>The <see cref="Person"/>'s first name.</summary>
         public string FirstName
         {
             get => _firstName;
@@ -30,6 +27,7 @@ namespace Gradebook.Models
             }
         }
 
+        /// <summary>The <see cref="Person"/>'s last name.</summary>
         public string LastName
         {
             get => _lastName;
