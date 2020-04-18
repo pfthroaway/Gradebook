@@ -17,5 +17,17 @@ namespace Gradebook.Models
                 NotifyPropertyChanged(nameof(EnrolledClasses));
             }
         }
+
+        public Student()
+        {
+        }
+
+        public Student(string id, string firstName, string lastName, List<string> enrolledClasses)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            EnrolledClasses = enrolledClasses;
+        }
     }
 }
