@@ -173,30 +173,37 @@ namespace Gradebook.Models
         {
             if (!string.IsNullOrWhiteSpace(studentID) && Students.Any(std => string.Equals(std, studentID, StringComparison.OrdinalIgnoreCase)))
             {
-                string grades = "";
-                List<decimal> types = new List<decimal>(Enum.GetNames(typeof(AssignmentType)).Length);
-                for (int i = 0; i < GradingScale.Count; i++)
+                string gradesText = ""; //string showing all grades and grading scale type stuff
+                List<decimal> types = new List<decimal>(Enum.GetNames(typeof(AssignmentType)).Length); //list of all grades for a given AssignmentType
+                List<int> counts = new List<int>(types.Count); //count of all grades for a given AssignmentType
+                for (int i = 0; i < GradingScale.Count; i++) //make sure that the lists have values for each assignment type
+                {
                     types.Add(0);
+                    counts.Add(0);
+                }
 
                 foreach (Assignment assignment in Gradebook)
                 {
                     string thisGrade = assignment.GetStudentGradeText(studentID);
                     if (!string.IsNullOrWhiteSpace(thisGrade))
                     {
-                        grades += $"{thisGrade}\n";
+                        //add grade text to gradesText, then update types and count
+                        gradesText += $"{thisGrade}\n";
                         int ind = Int32Helper.Parse(assignment.AssignmentType);
                         types[ind] += assignment.GetStudentGrade(studentID);
+                        counts[ind]++;
                     }
                 }
-                //TODO Figure out a way to have an assignment count for a given type so I can math it up properly.
+
                 string gradesByType = "";
                 int index = 0;
                 foreach (AssignmentType type in Enum.GetValues(typeof(AssignmentType)))
                 {
-                    gradesByType += $"{type}: {types[index] * 100}%\n";
+                    if (counts[index] > 0) //if there's a count for a given type, display grade average for it
+                        gradesByType += $"{type}: {types[index] / counts[index]}%\n";
                     index++;
                 }
-                return $"{grades}\n\n{gradesByType}";
+                return $"{gradesText}\n{gradesByType}";
             }
             return "";
         }
