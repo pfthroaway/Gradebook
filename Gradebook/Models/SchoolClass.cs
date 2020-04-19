@@ -1,5 +1,4 @@
-﻿using Extensions;
-using Extensions.DataTypeHelpers;
+﻿using Extensions.DataTypeHelpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -137,11 +136,11 @@ namespace Gradebook.Models
 
         /// <summary>Time the <see cref="SchoolClass"/> starts, formatted.</summary>
         [JsonIgnore]
-        public string StartTimeToString => StartTime.ToString("hh:MM tt");
+        public string StartTimeToString => StartTime.ToString("hh:mm tt");
 
         /// <summary>Time the <see cref="SchoolClass"/> ends, formatted.</summary>
         [JsonIgnore]
-        public string EndTimeToString => EndTime.ToString("hh:MM tt");
+        public string EndTimeToString => EndTime.ToString("hh:mm tt");
 
         /// <summary>Formatted string regarding the time the class occurs.</summary>
         [JsonIgnore]
@@ -208,10 +207,43 @@ namespace Gradebook.Models
             return "";
         }
 
-        public SchoolClass()
+        #region Override Operators
+
+        public static bool Equals(SchoolClass left, SchoolClass right)
         {
+            if (left is null && right is null) return true;
+            if (left is null ^ right is null) return false;
+            return string.Equals(left.Id, right.Id, StringComparison.OrdinalIgnoreCase) && string.Equals(left.Teacher, right.Teacher, StringComparison.OrdinalIgnoreCase) && !left.Students.Except(right.Students).Any() && !right.Students.Except(left.Students).Any() && left.Course == right.Course && !left.GradingScale.Except(right.GradingScale).Any() && !right.GradingScale.Except(left.GradingScale).Any() && !left.Gradebook.Except(right.Gradebook).Any() && !right.Gradebook.Except(left.Gradebook).Any() && !left.Days.Except(right.Days).Any() && !right.Days.Except(left.Days).Any() && left.StartTime == right.StartTime && left.EndTime == right.EndTime;
         }
 
+        public sealed override bool Equals(object obj) => Equals(this, obj as SchoolClass);
+
+        public bool Equals(SchoolClass otherSchoolClass) => Equals(this, otherSchoolClass);
+
+        public static bool operator ==(SchoolClass left, SchoolClass right) => Equals(left, right);
+
+        public static bool operator !=(SchoolClass left, SchoolClass right) => !Equals(left, right);
+
+        public sealed override int GetHashCode() => base.GetHashCode() ^ 17;
+
+        /// <summary>Overrides the ToString() method to return only Name.</summary>
+        public sealed override string ToString() => $"{Id} - {Course}";
+
+        #endregion Override Operators
+
+        /// <summary>Initializes an instance of <see cref="SchoolClass"/> by assigning values to Properties</summary>
+        /// <param name="id">ID of the <see cref="SchoolClass"/> (e.g., "ENGL 1301-99")</param>
+        /// <param name="teacherID">ID of the Teacher teaching this <see cref="SchoolClass"/></param>
+        /// <param name="studentIDs">List of IDs of all <see cref="Student"/>s enrolled in this <see cref="SchoolClass"/></param>
+        /// <param name="course">Course being taught in this <see cref="SchoolClass"/> (e.g., "ENGL 1301")</param>
+        /// <param name="gradingScale">Grading scale for assignment types. 10% = "0.1m"<br/>
+        ///  Use this order:<br/>
+        ///  Daily, Homework, Project, Quiz, Report, Test.<br/>
+        /// (e.g., "0.1m, 0.1m, 0.15m, 0.2m, 0.15m, 0.3m")</param>
+        /// <param name="gradebook">List of <see cref="Assignment"/>s graded in this class</param>
+        /// <param name="days">Days of the week the <see cref="SchooLClass"/> meets</param>
+        /// <param name="startTime">Time the <see cref="SchoolClass"/> starts</param>
+        /// <param name="endTime">Time the <see cref="SchoolClass"/> ends</param>
         public SchoolClass(string id, string teacherID, List<string> studentIDs, Course course, List<decimal> gradingScale, List<Assignment> gradebook, List<DayOfWeek> days, DateTime startTime, DateTime endTime)
         {
             Id = id;

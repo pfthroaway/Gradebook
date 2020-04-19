@@ -3,8 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Gradebook"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <TextBlock x:Name="Txt" />
+        Style="{StaticResource WindowStyle}"
+        Title="{Binding Content.Title, ElementName=MainFrame}"
+        WindowState="Maximized">
+    <Viewbox Stretch="Uniform">
+        <Frame x:Name="MainFrame"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.CanContentScroll="True"
+            NavigationUIVisibility="Hidden"
+            Source="SchoolPage.xaml" />
+    </Viewbox>
 </Window>
