@@ -4,6 +4,7 @@ using System.IO;
 
 namespace Gradebook.Models.IO
 {
+    /// <summary>Represents all required JSON interactions to read/write data.</summary>
     public static class JSONInteraction
     {
         private static readonly string ClassesFolderLocation = Path.Combine(AppData.Location, "Classes");
@@ -13,98 +14,41 @@ namespace Gradebook.Models.IO
 
         #region Load
 
-        /// <summary>Loads all <see cref="Class"/>es from disk.</summary>
-        /// <returns>List of <see cref="Class"/>es</returns>
-        internal static List<SchoolClass> LoadClasses()
+        /// <summary>Loads all <see cref="SchoolClass"/>es from disk.</summary>
+        /// <returns>List of <see cref="SchoolClass"/>es</returns>
+        internal static List<SchoolClass> LoadClasses() => LoadJsonFromFolder<SchoolClass>(ClassesFolderLocation);
+
+        /// <summary>Loads all <see cref="Course"/>s from disk.</summary>
+        /// <returns>List of <see cref="Course"/>s</returns>
+        internal static List<Course> LoadCourses() => LoadJsonFromFolder<Course>(CoursesFolderLocation);
+
+        /// <summary>Loads all <see cref="Student"/>s from disk.</summary>
+        /// <returns>List of <see cref="Student"/>s</returns>
+        internal static List<Student> LoadStudents() => LoadJsonFromFolder<Student>(StudentsFolderLocation);
+
+        /// <summary>Loads all <see cref="Teacher"/>s from disk.</summary>
+        /// <returns>List of <see cref="Teacher"/>s</returns>
+        internal static List<Teacher> LoadTeachers() => LoadJsonFromFolder<Teacher>(TeachersFolderLocation);
+
+        /// <summary>Loads JSON data from all files in a given folder.</summary>
+        /// <param name="folderPath">Path to the folder where the files are to be loaded</param>
+        /// <returns>JSON data from a folder</returns>
+        private static List<T> LoadJsonFromFolder<T>(string folderPath)
         {
-            List<SchoolClass> classes = new List<SchoolClass>();
-            if (!Directory.Exists(ClassesFolderLocation))
-                Directory.CreateDirectory(ClassesFolderLocation);
-            string[] files = Directory.GetFiles(ClassesFolderLocation);
+            List<T> list = new List<T>();
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+            string[] files = Directory.GetFiles(folderPath);
             if (files.Length > 0)
             {
                 foreach (string file in files)
                 {
                     if (file.EndsWith(".json"))
-                        classes.Add(JsonConvert.DeserializeObject<SchoolClass>(File.ReadAllText(file)));
+                        list.Add(JsonConvert.DeserializeObject<T>(File.ReadAllText(file)));
                 }
             }
 
-            return classes;
-        }
-
-        /// <summary>Loads all <see cref="Cours"/>es from disk.</summary>
-        /// <returns>List of <see cref="Cours"/>es</returns>
-        internal static List<Course> LoadCourses()
-        {
-            List<Course> courses = new List<Course>();
-            if (!Directory.Exists(CoursesFolderLocation))
-                Directory.CreateDirectory(CoursesFolderLocation);
-            string[] files = Directory.GetFiles(CoursesFolderLocation);
-            if (files.Length > 0)
-            {
-                foreach (string file in files)
-                {
-                    if (file.EndsWith(".json"))
-                        courses.Add(JsonConvert.DeserializeObject<Course>(File.ReadAllText(file)));
-                }
-            }
-
-            return courses;
-        }
-
-        /// <summary>Loads all <see cref="Cours"/>es from disk.</summary>
-        /// <returns>List of <see cref="Cours"/>es</returns>
-        internal static List<Student> LoadStudents()
-        {
-            List<Student> students = new List<Student>();
-            if (!Directory.Exists(StudentsFolderLocation))
-                Directory.CreateDirectory(StudentsFolderLocation);
-            string[] files = Directory.GetFiles(StudentsFolderLocation);
-            if (files.Length > 0)
-            {
-                foreach (string file in files)
-                {
-                    if (file.EndsWith(".json"))
-                        students.Add(JsonConvert.DeserializeObject<Student>(File.ReadAllText(file)));
-                }
-            }
-
-            return students;
-        }
-
-        /// <summary>Loads all <see cref="Cours"/>es from disk.</summary>
-        /// <returns>List of <see cref="Cours"/>es</returns>
-        internal static List<Teacher> LoadTeachers()
-        {
-            List<Teacher> teachers = new List<Teacher>();
-            if (!Directory.Exists(TeachersFolderLocation))
-                Directory.CreateDirectory(TeachersFolderLocation);
-            string[] files = Directory.GetFiles(TeachersFolderLocation);
-            if (files.Length > 0)
-            {
-                foreach (string file in files)
-                {
-                    if (file.EndsWith(".json"))
-                        teachers.Add(JsonConvert.DeserializeObject<Teacher>(File.ReadAllText(file)));
-                }
-            }
-
-            return teachers;
-        }
-
-        /// <summary>Loads JSON data from a file.</summary>
-        /// <param name="path">Path to the file to be loaded</param>
-        /// <returns>JSON data from a file</returns>
-        private static List<T> LoadJsonFromFile<T>(string path)
-        {
-            string data = "";
-            if (File.Exists(path))
-                data = File.ReadAllText(path);
-            else
-                School.DisplayNotification($"{path} does not exist.", "Sulimn");
-
-            return !string.IsNullOrWhiteSpace(data) ? JsonConvert.DeserializeObject<List<T>>(data) : new List<T>();
+            return list;
         }
 
         #endregion Load
