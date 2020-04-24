@@ -1,0 +1,39 @@
+﻿<Page x:Class="Gradebook.Views.CourseViews.CoursesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Gradebook - All Courses"
+      Style="{StaticResource PageStyle}"
+      Loaded="Page_Loaded">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ListView x:Name="LVCourses" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Height="730" SelectionChanged="LVCourses_SelectionChanged" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2" Margin="0,0,0,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=Number}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Number" Click="LVCoursesColumnHeader_Click" Content="Course Name" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=Name}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Name" Click="LVCoursesColumnHeader_Click" Content="Course Name" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Path=CreditHours}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="CreditHours" Click="LVCoursesColumnHeader_Click" Content="Credit Hours" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="BtnNewCourse" Width="253" Content="_New Course" Click="BtnNewCourse_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteCourse" Width="253" Content="_Delete Course" Click="BtnDeleteCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnModifyCourse" Width="253" Content="_Modify Course" Click="BtnModifyCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="253" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+        </StackPanel>
+    </StackPanel>
+</Page>

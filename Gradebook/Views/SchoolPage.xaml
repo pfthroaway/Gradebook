@@ -6,6 +6,7 @@
       mc:Ignorable="d"
       Style="{StaticResource PageStyle}"
       Title="School">
-    <Grid>
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button x:Name="BtnViewCourses" Width="250" Content="View _Courses" Click="BtnViewCourses_Click" />
+    </StackPanel>
 </Page>

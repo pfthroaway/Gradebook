@@ -4,12 +4,13 @@ using Gradebook.Models.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Gradebook.Models
 {
-    /// <summary>Static class representing the <see cref="School"/> and all its necessary components.</summary>
+    /// <summary>Static class representing the <see cref="School"/> and all its necessary components, and also includes application navigation.</summary>
     public static class School
     {
         public static List<SchoolClass> AllClasses = new List<SchoolClass>();
@@ -80,6 +81,27 @@ namespace Gradebook.Models
             }
             return grades;
         }
+
+        #region Course Manipulation
+
+        /// <summary>Deletes a <see cref="Course"/>.</summary>
+        /// <param name="deleteCourse"><see cref="Course"/> to be deleted</param>
+        public static void DeleteCourse(Course deleteCourse)
+        {
+            JSONInteraction.DeleteCourse(deleteCourse);
+            AllCourses.Remove(deleteCourse);
+        }
+
+        /// <summary>Saves a <see cref="Course"/> to disk.</summary>
+        /// <param name="saveCourse"><see cref="Course"/> to be saved to disk</param>
+        public static void SaveCourse(Course saveCourse)
+        {
+            JSONInteraction.SaveCourse(saveCourse);
+            AllCourses.Add(saveCourse);
+            AllCourses = AllCourses.OrderBy(course => course.Number).ToList();
+        }
+
+        #endregion Course Manipulation
 
         #region Notification Management
 

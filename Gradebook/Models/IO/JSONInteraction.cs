@@ -12,6 +12,10 @@ namespace Gradebook.Models.IO
         private static readonly string StudentsFolderLocation = Path.Combine(AppData.Location, "Students");
         private static readonly string TeachersFolderLocation = Path.Combine(AppData.Location, "Teachers");
 
+        /// <summary>Deletes a specified <see cref="Course"/> from disk.</summary>
+        /// <param name="deleteCourse"><see cref="Course"/> to be deleted</param>
+        internal static void DeleteCourse(Course deleteCourse) => File.Delete(Path.Combine(CoursesFolderLocation, $"{deleteCourse.Number}.json"));
+
         #region Load
 
         /// <summary>Loads all <see cref="SchoolClass"/>es from disk.</summary>
@@ -65,12 +69,12 @@ namespace Gradebook.Models.IO
         }
 
         /// <summary>Saves a <see cref="Course"/> to disk.</summary>
-        /// <param name="course"><see cref="Course"/> to be saved to disk</param>
-        public static void SaveCourse(Course course)
+        /// <param name="saveCourse"><see cref="Course"/> to be saved to disk</param>
+        public static void SaveCourse(Course saveCourse)
         {
             if (!Directory.Exists(CoursesFolderLocation))
                 Directory.CreateDirectory(CoursesFolderLocation);
-            File.WriteAllText(Path.Combine(CoursesFolderLocation, $"{course.Number}.json"), JsonConvert.SerializeObject(course, Formatting.Indented));
+            File.WriteAllText(Path.Combine(CoursesFolderLocation, $"{saveCourse.Number}.json"), JsonConvert.SerializeObject(saveCourse, Formatting.Indented));
         }
 
         /// <summary>Saves a <see cref="Student"/> to disk.</summary>
