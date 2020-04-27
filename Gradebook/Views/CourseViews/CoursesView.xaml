@@ -11,17 +11,17 @@
         <ListView x:Name="LVCourses" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Height="730" SelectionChanged="LVCourses_SelectionChanged" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2" Margin="0,0,0,10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=Number}">
+                    <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path=Number}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="Number" Click="LVCoursesColumnHeader_Click" Content="Course Name" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=Name}">
+                    <GridViewColumn Width="550" DisplayMemberBinding="{Binding Path=Name}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="Name" Click="LVCoursesColumnHeader_Click" Content="Course Name" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Path=CreditHours}">
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Path=CreditHoursToString}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="CreditHours" Click="LVCoursesColumnHeader_Click" Content="Credit Hours" />
                         </GridViewColumn.Header>

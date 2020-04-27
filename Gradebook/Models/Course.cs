@@ -8,6 +8,8 @@ namespace Gradebook.Models
         private string _number, _name;
         private decimal _creditHours;
 
+        #region Modifying Properties
+
         /// <summary>Number of the <see cref="Course"/>, (e.g., "ENGL-1301").</summary>
         public string Number
         {
@@ -37,9 +39,18 @@ namespace Gradebook.Models
             set
             {
                 _creditHours = value;
-                NotifyPropertyChanged(nameof(CreditHours));
+                NotifyPropertyChanged(nameof(CreditHours), nameof(CreditHoursToString));
             }
         }
+
+        #endregion Modifying Properties
+
+        #region Helper Properties
+
+        /// <summary>Hours of credit the <see cref="Course"/> provides, formatted.</summary></summary>
+        public string CreditHoursToString => CreditHours.ToString("N1");
+
+        #endregion Helper Properties
 
         #region Override Operators
 

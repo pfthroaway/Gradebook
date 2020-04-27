@@ -2,21 +2,9 @@
 using Extensions.DataTypeHelpers;
 using Extensions.Enums;
 using Gradebook.Models;
-using Gradebook.Models.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Gradebook.Views.CourseViews
 {
@@ -26,7 +14,7 @@ namespace Gradebook.Views.CourseViews
         /// <summary>Checks whether the Save buttons should be enabled.</summary>
         private void CheckButtons()
         {
-            bool enabled = TxtNumber.Text.Length >= 0 && TxtName.Text.Length >= 0 && TxtHours.Text.Length >= 0;
+            bool enabled = TxtNumber.Text.Length > 0 && TxtName.Text.Length > 0 && TxtHours.Text.Length > 0;
             BtnSaveAndDone.IsEnabled = enabled;
             BtnSaveAndNew.IsEnabled = enabled;
         }
@@ -40,7 +28,7 @@ namespace Gradebook.Views.CourseViews
         }
 
         /// <summary>Saves a new <see cref="Course"/>.</summary>
-        private void Save() => School.SaveCourse(new Course(TxtNumber.Text, TxtName.Text, DecimalHelper.Parse(TxtHours)));
+        private void Save() => School.SaveCourse(new Course(TxtNumber.Text, TxtName.Text, DecimalHelper.Parse(TxtHours.Text)));
 
         #region Click
 
@@ -64,7 +52,11 @@ namespace Gradebook.Views.CourseViews
 
         #region Page-Manipulation Methods
 
-        public NewCourseView() => InitializeComponent();
+        public NewCourseView()
+        {
+            InitializeComponent();
+            TxtNumber.Focus();
+        }
 
         private void Txt_GotFocus(object sender, RoutedEventArgs e) => Functions.TextBoxGotFocus(sender);
 
