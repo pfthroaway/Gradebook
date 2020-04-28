@@ -1,14 +1,76 @@
 ﻿<Page x:Class="Gradebook.Views.ClassViews.NewClassView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Gradebook.Views.ClassViews"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="NewClassView">
-
-    <Grid>
-        
-    </Grid>
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Style="{StaticResource PageStyle}"
+      Title="Gradebook - New Teacher">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="New Class ID:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <TextBox x:Name="TxtID" Width="550" GotFocus="Txt_GotFocus" Margin="0,0,0,10" />
+        <TextBlock Text="Select a Course:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <ComboBox x:Name="CmbCourse" Width="550" SelectionChanged="CmbCourse_SelectionChanged" Margin="0,0,0,10" />
+        <TextBlock Text="Select a Teacher:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <ComboBox x:Name="CmbTeacher" Width="550" SelectionChanged="CmbTeacher_SelectionChanged" Margin="0,0,0,10" />
+        <TextBlock Text="Grading Scale:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <Grid HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Daily %" TextAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="Homework %" TextAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="2" Grid.Row="0" Text="Project %" TextAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="3" Grid.Row="0" Text="Quiz %" TextAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="4" Grid.Row="0" Text="Report %" TextAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="5" Grid.Row="0" Text="Test %" TextAlignment="Center" Margin="0,0,0,10" />
+            <TextBox x:Name="TxtDaily" Grid.Column="0" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtHomework" Grid.Column="1" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtProject" Grid.Column="2" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtQuiz" Grid.Column="3" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtReport" Grid.Column="4" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtTest" Grid.Column="5" Grid.Row="1" Width="200" GotFocus="Txt_GotFocus" MaxLength="5" PreviewKeyDown="TxtIntegers_PreviewKeyDown" TextChanged="TxtIntegers_TextChanged" />
+        </Grid>
+        <GroupBox Header="Days" HorizontalAlignment="Center" Padding="5" Margin="0,0,0,10">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <CheckBox x:Name="ChkSunday" Content="Sunday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkMonday" Content="Monday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkTuesday" Content="Tuesday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkWednesday" Content="Wednesday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkThursday" Content="Thursday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkFriday" Content="Friday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+                <CheckBox x:Name="ChkSaturday" Content="Saturday" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Margin="0,0,10,0" />
+            </StackPanel>
+        </GroupBox>
+        <Grid HorizontalAlignment="Center" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Start Time:" HorizontalAlignment="Center" Margin="0,0,10,10" />
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="End Time:" HorizontalAlignment="Center" Margin="0,0,10,10" />
+            <TextBox x:Name="TxtStartTime" Grid.Column="0" Grid.Row="1" Width="200" Text="9:00 AM" GotFocus="Txt_GotFocus" MaxLength="8" Margin="0,0,10,0" />
+            <TextBox x:Name="TxtEndTime" Grid.Column="1" Grid.Row="1" Width="200" Text="9:50 AM" GotFocus="Txt_GotFocus" MaxLength="8" />
+        </Grid>
+        <TextBlock x:Name="TxtError" Text="Please ensure you have entered a valid unused ID, selected a valid course and teacher, entered a number for each grading scale entry, selected at least one day for the class to meet, and entered valid start and ending times." Foreground="Red" TextAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed" Margin="0,0,0,20" />
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="BtnSaveAndDone" Width="305" Content="_Save and Done" IsDefault="True" Click="BtnSaveAndDone_Click" Margin="0,0,10,0" />
+            <Button x:Name="BtnSaveAndNew" Width="305" Content="Save and _New" Click="BtnSaveAndNew_Click" Margin="0,0,10,0" />
+            <Button x:Name="BtnClear" Width="305" Content="_Clear" Click="BtnClear_Click" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="305" Content="_Back" IsCancel="True" Click="BtnBack_Click" />
+        </StackPanel>
+    </StackPanel>
 </Page>

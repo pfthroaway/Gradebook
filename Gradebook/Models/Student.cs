@@ -42,7 +42,7 @@ namespace Gradebook.Models
         public sealed override int GetHashCode() => base.GetHashCode() ^ 17;
 
         /// <summary>Overrides the ToString() method to return only Name.</summary>
-        public sealed override string ToString() => $"{Id} - {Name}";
+        public sealed override string ToString() => $"{Id} - {LastFirst}";
 
         #endregion Override Operators
 

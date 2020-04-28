@@ -5,9 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       Title="Gradebook - All Classes"
-      Style="{StaticResource PageStyle}">
-    <Grid></Grid>
-    <!-- Loaded="Page_Loaded">
+      Style="{StaticResource PageStyle}"
+      Loaded="Page_Loaded">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <ListView x:Name="LVClasses" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Height="730" SelectionChanged="LVClasses_SelectionChanged" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2" Margin="0,0,0,10">
             <ListView.View>
@@ -22,19 +21,19 @@
                             <GridViewColumnHeader Tag="Name" Click="LVClassesColumnHeader_Click" Content="Course Name" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
-                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=Teacher}">
+                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=TeacherLastFirst}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="CreditHours" Click="LVClassesColumnHeader_Click" Content="Credit Hours" />
+                            <GridViewColumnHeader Tag="TeacherLastFirst" Click="LVClassesColumnHeader_Click" Content="Teacher" />
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="BtnNewClass" Width="254" Content="_New Class" Click="BtnNewClasse_Click" IsDefault="True" Margin="0,0,10,0" />
-            <Button x:Name="BtnDeleteClass" Width="254" Content="_Delete Class" Click="BtnDeleteClasse_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnModifyClass" Width="254" Content="_Modify Class" Click="BtnModifyClasse_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnBack" Width="254" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+            <Button x:Name="BtnNewClass" Width="304" Content="_New Class" Click="BtnNewClass_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteClass" Width="304" Content="_Delete Class" Click="BtnDeleteClass_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnModifyClass" Width="304" Content="_Modify Class" Click="BtnModifyClass_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="304" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
         </StackPanel>
-    </StackPanel>-->
+    </StackPanel>
 </Page>

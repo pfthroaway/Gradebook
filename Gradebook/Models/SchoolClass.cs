@@ -130,6 +130,12 @@ namespace Gradebook.Models
 
         #region Helper Properties
 
+        /// <summary>Name of the <see cref="Teacher"/>.</summary>
+        public string TeacherName => School.AllTeachers.Find(teacher => teacher.Id.Equals(Teacher, StringComparison.OrdinalIgnoreCase)).Name;
+
+        /// <summary>Name of the <see cref="Teacher"/>.</summary>
+        public string TeacherLastFirst => School.AllTeachers.Find(teacher => teacher.Id.Equals(Teacher, StringComparison.OrdinalIgnoreCase)).LastFirst;
+
         /// <summary>Days of the week the <see cref="SchooLClass"/> meets, formatted.</summary>
         [JsonIgnore]
         public string DaysToString => string.Join(", ", Days);

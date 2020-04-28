@@ -46,5 +46,8 @@ namespace Gradebook.Models
         /// <summary>Displays a <see cref="Person"/>'s first and last names.</summary>
         [JsonIgnore]
         public string Name => $"{FirstName} {LastName}";
+
+        /// <summary>Displays a <see cref="Person"/>'s last then first names.</summary>
+        public string LastFirst => $"{LastName}, {FirstName}";
     }
 }
