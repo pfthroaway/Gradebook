@@ -1,18 +1,18 @@
-﻿<Page x:Class="Gradebook.Views.CourseViews.NewCourseView"
+﻿<Page x:Class="Gradebook.Views.TeacherViews.NewTeacherView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       Style="{StaticResource PageStyle}"
-      Title="Gradebook - New Course">
+      Title="Gradebook - New Teacher">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="New Course Number:" HorizontalAlignment="Center" Margin="0,0,0,10" />
-        <TextBox x:Name="TxtNumber" Width="400" GotFocus="Txt_GotFocus" TextChanged="TxtNameNumber_TextChanged" Margin="0,0,0,10" />
-        <TextBlock Text="Course Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
-        <TextBox x:Name="TxtName" Width="400" GotFocus="Txt_GotFocus" TextChanged="TxtNameNumber_TextChanged" Margin="0,0,0,10" />
-        <TextBlock Text="Credit Hours:" HorizontalAlignment="Center" Margin="0,0,0,10" />
-        <TextBox x:Name="TxtHours" Width="400" PreviewKeyDown="TxtHours_PreviewKeyDown" GotFocus="Txt_GotFocus" TextChanged="TxtHours_TextChanged" Margin="0,0,0,20" />
+        <TextBlock Text="New Teacher ID:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <TextBox x:Name="TxtID" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,10" />
+        <TextBlock Text="Last Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <TextBox x:Name="TxtFirstName" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,10" />
+        <TextBlock Text="First Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <TextBox x:Name="TxtLastName" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,20" />
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Button x:Name="BtnSaveAndDone" Width="250" Content="_Save and Done" IsDefault="True" Click="BtnSaveAndDone_Click" Margin="0,0,10,0" />
             <Button x:Name="BtnSaveAndNew" Width="250" Content="Save and _New" Click="BtnSaveAndNew_Click" />

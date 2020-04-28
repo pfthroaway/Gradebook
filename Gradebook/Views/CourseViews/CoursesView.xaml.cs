@@ -18,7 +18,7 @@ namespace Gradebook.Views.CourseViews
         /// <summary>Refreshes the ListView's ItemsSource.</summary>
         internal void RefreshItemsSource()
         {
-            _allCourses = School.AllCourses;
+            _allCourses = new List<Course>(School.AllCourses);
             LVCourses.ItemsSource = _allCourses;
             LVCourses.Items.Refresh();
         }
@@ -29,8 +29,11 @@ namespace Gradebook.Views.CourseViews
 
         private void BtnDeleteCourse_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedCourse != null && School.YesNoNotification($"Are you sure that you want to delete this course? It will affect {School.AllClasses.Where(cls => cls.Course == _selectedCourse).ToList().Count} courses. This action cannot be undone.", "Gradebook"))
+            if (_selectedCourse != null && School.YesNoNotification($"Are you sure that you want to delete this course? It will affect {School.AllClasses.Where(cls => cls.Course == _selectedCourse).ToList().Count} classes. This action cannot be undone.", "Gradebook"))
+            {
                 School.DeleteCourse(_selectedCourse);
+                RefreshItemsSource();
+            }
         }
 
         private void BtnModifyCourse_Click(object sender, RoutedEventArgs e)

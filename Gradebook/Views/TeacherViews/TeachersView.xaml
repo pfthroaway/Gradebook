@@ -1,0 +1,39 @@
+﻿<Page x:Class="Gradebook.Views.TeacherViews.TeachersView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Gradebook - All Teachers"
+      Style="{StaticResource PageStyle}"
+      Loaded="Page_Loaded">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ListView x:Name="LVTeachers" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Height="730" SelectionChanged="LVTeachers_SelectionChanged" SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2" Margin="0,0,0,10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="250" DisplayMemberBinding="{Binding Path=Id}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Id" Click="LVTeachersColumnHeader_Click" Content="ID" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=LastName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="LastName" Click="LVTeachersColumnHeader_Click" Content="Last Name" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="400" DisplayMemberBinding="{Binding Path=FirstName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="FirstName" Click="LVTeachersColumnHeader_Click" Content="First Name" />
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="BtnNewTeacher" Width="266" Content="_New Teacher" Click="BtnNewTeacher_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteTeacher" Width="266" Content="_Delete Teacher" Click="BtnDeleteTeacher_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnModifyTeacher" Width="266" Content="_Modify Teacher" Click="BtnModifyTeacher_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="266" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+        </StackPanel>
+    </StackPanel>
+</Page>

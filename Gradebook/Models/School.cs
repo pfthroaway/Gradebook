@@ -82,26 +82,119 @@ namespace Gradebook.Models
             return grades;
         }
 
+        #region Class Manipulation
+
+        /// <summary>Deletes a <see cref="SchoolClass"/>.</summary>
+        /// <param name="deleteClass"><see cref="SchoolClass"/> to be deleted</param>
+        public static void DeleteClass(SchoolClass deleteClass)
+        {
+            JSONInteraction.DeleteClass(deleteClass);
+            foreach (Teacher teacher in AllTeachers)
+                teacher.ClassesTaught.RemoveAll(clsTaught => clsTaught.Equals(deleteClass.Id, StringComparison.OrdinalIgnoreCase));
+            foreach (Student student in AllStudents)
+                student.EnrolledClasses.RemoveAll(clsTaught => clsTaught.Equals(deleteClass.Id, StringComparison.OrdinalIgnoreCase));
+            AllClasses.Remove(deleteClass);
+        }
+
+        /// <summary>Saves a <see cref="SchoolClass"/> to disk.</summary>
+        /// <param name="newClass"><see cref="SchoolClass"/> to be saved to disk</param>
+        public static void NewClass(SchoolClass newClass)
+        {
+            JSONInteraction.NewClass(newClass);
+            AllClasses.Add(newClass);
+            AllClasses = AllClasses.OrderBy(cls => cls.Id).ToList();
+        }
+
+        #endregion Class Manipulation
+
         #region Course Manipulation
 
         /// <summary>Deletes a <see cref="Course"/>.</summary>
         /// <param name="deleteCourse"><see cref="Course"/> to be deleted</param>
         public static void DeleteCourse(Course deleteCourse)
         {
+            // if a course is deleted, all classes that teach it need to be deleted
+            // all teachers who teach a class with that course need to have that class deleted
+            // all students enrolled in a class with that course need to have that class deleted
             JSONInteraction.DeleteCourse(deleteCourse);
+            foreach (SchoolClass cls in AllClasses)
+            {
+                if (cls.Course == deleteCourse)
+                    DeleteClass(cls);
+            }
             AllCourses.Remove(deleteCourse);
         }
 
         /// <summary>Saves a <see cref="Course"/> to disk.</summary>
-        /// <param name="saveCourse"><see cref="Course"/> to be saved to disk</param>
-        public static void SaveCourse(Course saveCourse)
+        /// <param name="newCourse"><see cref="Course"/> to be saved to disk</param>
+        public static void NewCourse(Course newCourse)
         {
-            JSONInteraction.SaveCourse(saveCourse);
-            AllCourses.Add(saveCourse);
+            JSONInteraction.NewCourse(newCourse);
+            AllCourses.Add(newCourse);
             AllCourses = AllCourses.OrderBy(course => course.Number).ToList();
         }
 
         #endregion Course Manipulation
+
+        #region Student Manipulation
+
+        /// <summary>Deletes a <see cref="Student"/>.</summary>
+        /// <param name="deleteStudent"><see cref="Student"/> to be deleted</param>
+        public static void DeleteStudent(Student deleteStudent)
+        {
+            JSONInteraction.DeleteStudent(deleteStudent);
+            foreach (SchoolClass cls in AllClasses)
+            {
+                if (cls.Students.Any(std => std.Equals(deleteStudent.Id, StringComparison.OrdinalIgnoreCase)))
+                {
+                    cls.Students.RemoveAll(std => std.Equals(deleteStudent.Id, StringComparison.OrdinalIgnoreCase));
+                    foreach (Assignment assignment in cls.Gradebook)
+                        assignment.Grades.Remove(deleteStudent.Id);
+                    JSONInteraction.NewClass(cls);
+                }
+            }
+            AllStudents.Remove(deleteStudent);
+        }
+
+        /// <summary>Saves a <see cref="Student"/> to disk.</summary>
+        /// <param name="newStudent"><see cref="Student"/> to be saved to disk</param>
+        public static void NewStudent(Student newStudent)
+        {
+            JSONInteraction.NewStudent(newStudent);
+            AllStudents.Add(newStudent);
+            AllStudents = AllStudents.OrderBy(course => course.Id).ToList();
+        }
+
+        #endregion Student Manipulation
+
+        #region Teacher Manipulation
+
+        /// <summary>Deletes a <see cref="Teacher"/>.</summary>
+        /// <param name="deleteTeacher"><see cref="Teacher"/> to be deleted</param>
+        public static void DeleteTeacher(Teacher deleteTeacher)
+        {
+            JSONInteraction.DeleteTeacher(deleteTeacher);
+            foreach (SchoolClass cls in AllClasses)
+            {
+                if (cls.Teacher.Equals(deleteTeacher.Id, StringComparison.OrdinalIgnoreCase))
+                {
+                    cls.Teacher = "";
+                    JSONInteraction.NewClass(cls);
+                }
+            }
+            AllTeachers.Remove(deleteTeacher);
+        }
+
+        /// <summary>Saves a <see cref="Teacher"/> to disk.</summary>
+        /// <param name="newTeacher"><see cref="Teacher"/> to be saved to disk</param>
+        public static void NewTeacher(Teacher newTeacher)
+        {
+            JSONInteraction.NewTeacher(newTeacher);
+            AllTeachers.Add(newTeacher);
+            AllTeachers = AllTeachers.OrderBy(course => course.Id).ToList();
+        }
+
+        #endregion Teacher Manipulation
 
         #region Notification Management
 

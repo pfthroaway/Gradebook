@@ -7,6 +7,8 @@
       Style="{StaticResource PageStyle}"
       Title="School">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="BtnViewCourses" Width="250" Content="View _Courses" Click="BtnViewCourses_Click" />
+        <Button x:Name="BtnViewCourses" Width="250" Content="View _Courses" Click="BtnViewCourses_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnViewStudents" Width="250" Content="View _Students" Click="BtnViewStudents_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnViewTeachers" Width="250" Content="View _Teachers" Click="BtnViewTeachers_Click" />
     </StackPanel>
 </Page>

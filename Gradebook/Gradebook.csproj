@@ -75,6 +75,18 @@
     <Compile Include="Views\SchoolPage.xaml.cs">
       <DependentUpon>SchoolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StudentViews\NewStudentView.xaml.cs">
+      <DependentUpon>NewStudentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\StudentsView.xaml.cs">
+      <DependentUpon>StudentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\NewTeacherView.xaml.cs">
+      <DependentUpon>NewTeacherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherViews\TeachersView.xaml.cs">
+      <DependentUpon>TeachersView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\CourseViews\CoursesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,6 +108,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\SchoolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\NewStudentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\StudentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherViews\NewTeacherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherViews\TeachersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,8 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ClassViews\" />
-    <Folder Include="Views\StudentViews\" />
-    <Folder Include="Views\TeacherViews\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Extensions\Extensions.csproj">

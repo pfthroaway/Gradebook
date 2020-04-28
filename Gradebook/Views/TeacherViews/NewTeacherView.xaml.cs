@@ -1,20 +1,18 @@
 ﻿using Extensions;
-using Extensions.DataTypeHelpers;
-using Extensions.Enums;
 using Gradebook.Models;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
-namespace Gradebook.Views.CourseViews
+namespace Gradebook.Views.TeacherViews
 {
-    /// <summary>Interaction logic for NewCourseView.xaml</summary>
-    public partial class NewCourseView : Page
+    /// <summary>Interaction logic for NewTeacherView.xaml</summary>
+    public partial class NewTeacherView : Page
     {
         /// <summary>Checks whether the Save buttons should be enabled.</summary>
         private void CheckButtons()
         {
-            bool enabled = TxtNumber.Text.Trim().Length > 0 && TxtName.Text.Trim().Length > 0 && TxtHours.Text.Trim().Length > 0;
+            bool enabled = TxtID.Text.Trim().Length > 0 && TxtFirstName.Text.Trim().Length > 0 && TxtLastName.Text.Trim().Length > 0;
             BtnSaveAndDone.IsEnabled = enabled;
             BtnSaveAndNew.IsEnabled = enabled;
         }
@@ -22,13 +20,13 @@ namespace Gradebook.Views.CourseViews
         /// <summary>Clears all TextBoxes.</summary>
         private void Clear()
         {
-            TxtNumber.Clear();
-            TxtName.Clear();
-            TxtHours.Clear();
+            TxtID.Clear();
+            TxtFirstName.Clear();
+            TxtLastName.Clear();
         }
 
-        /// <summary>Saves a new <see cref="Course"/>.</summary>
-        private void Save() => School.NewCourse(new Course(TxtNumber.Text.Trim(), TxtName.Text.Trim(), DecimalHelper.Parse(TxtHours.Text)));
+        /// <summary>Saves a new <see cref="Teacher"/>.</summary>
+        private void Save() => School.NewTeacher(new Teacher(TxtID.Text.Trim(), TxtFirstName.Text.Trim(), TxtLastName.Text.Trim(), new List<string>()));
 
         #region Click
 
@@ -52,23 +50,15 @@ namespace Gradebook.Views.CourseViews
 
         #region Page-Manipulation Methods
 
-        public NewCourseView()
+        public NewTeacherView()
         {
             InitializeComponent();
-            TxtNumber.Focus();
+            TxtID.Focus();
         }
 
         private void Txt_GotFocus(object sender, RoutedEventArgs e) => Functions.TextBoxGotFocus(sender);
 
-        private void TxtHours_PreviewKeyDown(object sender, KeyEventArgs e) => Functions.PreviewKeyDown(e, KeyType.Decimals);
-
-        private void TxtNameNumber_TextChanged(object sender, TextChangedEventArgs e) => CheckButtons();
-
-        private void TxtHours_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Functions.TextBoxTextChanged(sender, KeyType.Decimals);
-            CheckButtons();
-        }
+        private void Txt_TextChanged(object sender, TextChangedEventArgs e) => CheckButtons();
 
         #endregion Page-Manipulation Methods
     }

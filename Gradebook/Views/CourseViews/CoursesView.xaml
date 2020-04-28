@@ -30,10 +30,10 @@
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="BtnNewCourse" Width="253" Content="_New Course" Click="BtnNewCourse_Click" IsDefault="True" Margin="0,0,10,0" />
-            <Button x:Name="BtnDeleteCourse" Width="253" Content="_Delete Course" Click="BtnDeleteCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnModifyCourse" Width="253" Content="_Modify Course" Click="BtnModifyCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnBack" Width="253" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+            <Button x:Name="BtnNewCourse" Width="254" Content="_New Course" Click="BtnNewCourse_Click" IsDefault="True" Margin="0,0,10,0" />
+            <Button x:Name="BtnDeleteCourse" Width="254" Content="_Delete Course" Click="BtnDeleteCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnModifyCourse" Width="254" Content="_Modify Course" Click="BtnModifyCourse_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnBack" Width="254" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
         </StackPanel>
     </StackPanel>
 </Page>

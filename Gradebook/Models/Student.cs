@@ -48,7 +48,7 @@ namespace Gradebook.Models
 
         #region Constructors
 
-        /// <summary>Initializes an instance of <see cref="Course"/> by assigning values to Properties.</summary>
+        /// <summary>Initializes an instance of <see cref="Student"/> by assigning values to Properties.</summary>
         /// <param name="id">ID of the <see cref="Student"/></param>
         /// <param name="firstName">The <see cref="Student"/>'s first name</param>
         /// <param name="lastName">The <see cref="Student"/>'s first name</param>
