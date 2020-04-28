@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Gradebook.Models
 {
@@ -11,6 +12,7 @@ namespace Gradebook.Models
         #region Modifying Properties
 
         /// <summary>Number of the <see cref="Course"/>, (e.g., "ENGL-1301").</summary>
+        [JsonProperty(Order = 1)]
         public string Number
         {
             get => _number;
@@ -22,6 +24,7 @@ namespace Gradebook.Models
         }
 
         /// <summary>Name of the <see cref="Course"/>, (e.g., "English Composition I").</summary>
+        [JsonProperty(Order = 2)]
         public string Name
         {
             get => _name;
@@ -33,6 +36,7 @@ namespace Gradebook.Models
         }
 
         /// <summary>Hours of credit the <see cref="Course"/> provides.</summary></summary>
+        [JsonProperty(Order = 3)]
         public decimal CreditHours
         {
             get => _creditHours;
@@ -48,6 +52,7 @@ namespace Gradebook.Models
         #region Helper Properties
 
         /// <summary>Hours of credit the <see cref="Course"/> provides, formatted.</summary></summary>
+        [JsonIgnore]
         public string CreditHoursToString => CreditHours.ToString("N1");
 
         #endregion Helper Properties
