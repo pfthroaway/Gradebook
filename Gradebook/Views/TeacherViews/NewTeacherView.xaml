@@ -9,9 +9,9 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="New Teacher ID:" HorizontalAlignment="Center" Margin="0,0,0,10" />
         <TextBox x:Name="TxtID" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,10" />
-        <TextBlock Text="Last Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
-        <TextBox x:Name="TxtFirstName" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,10" />
         <TextBlock Text="First Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
+        <TextBox x:Name="TxtFirstName" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,10" />
+        <TextBlock Text="Last Name:" HorizontalAlignment="Center" Margin="0,0,0,10" />
         <TextBox x:Name="TxtLastName" Width="400" GotFocus="Txt_GotFocus" TextChanged="Txt_TextChanged" Margin="0,0,0,20" />
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
             <Button x:Name="BtnSaveAndDone" Width="250" Content="_Save and Done" IsDefault="True" Click="BtnSaveAndDone_Click" Margin="0,0,10,0" />

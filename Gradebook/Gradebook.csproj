@@ -66,6 +66,12 @@
     <Compile Include="Models\IO\JSONInteraction.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Views\ClassViews\ClassesView.xaml.cs">
+      <DependentUpon>ClassesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassViews\NewClassView.xaml.cs">
+      <DependentUpon>NewClassView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CourseViews\CoursesView.xaml.cs">
       <DependentUpon>CoursesView.xaml</DependentUpon>
     </Compile>
@@ -87,6 +93,14 @@
     <Compile Include="Views\TeacherViews\TeachersView.xaml.cs">
       <DependentUpon>TeachersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ClassViews\ClassesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassViews\NewClassView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CourseViews\CoursesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -158,9 +172,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ClassViews\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Extensions\Extensions.csproj">
       <Project>{20f40385-5991-461c-9340-2f5de0e320f4}</Project>
