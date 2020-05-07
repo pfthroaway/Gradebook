@@ -32,7 +32,7 @@
         <StackPanel Orientation="Horizontal">
             <Button x:Name="BtnNewClass" Width="304" Content="_New Class" Click="BtnNewClass_Click" IsDefault="True" Margin="0,0,10,0" />
             <Button x:Name="BtnDeleteClass" Width="304" Content="_Delete Class" Click="BtnDeleteClass_Click" IsEnabled="False" Margin="0,0,10,0" />
-            <Button x:Name="BtnModifyClass" Width="304" Content="_Modify Class" Click="BtnModifyClass_Click" IsEnabled="False" Margin="0,0,10,0" />
+            <Button x:Name="BtnViewClass" Width="304" Content="_View Class" Click="BtnViewClass_Click" IsEnabled="False" Margin="0,0,10,0" />
             <Button x:Name="BtnBack" Width="304" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
         </StackPanel>
     </StackPanel>

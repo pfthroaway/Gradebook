@@ -66,8 +66,23 @@
     <Compile Include="Models\IO\JSONInteraction.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\School.cs" />
+    <Compile Include="Views\AssignmentViews\AssignmentsView.xaml.cs">
+      <DependentUpon>AssignmentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AssignmentViews\ManageAssignmentView.xaml.cs">
+      <DependentUpon>ManageAssignmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AssignmentViews\NewAssignmentView.xaml.cs">
+      <DependentUpon>NewAssignmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClassViews\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassViews\ClassView.xaml.cs">
+      <DependentUpon>ClassView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassViews\ManageClassView.xaml.cs">
+      <DependentUpon>ManageClassView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClassViews\NewClassView.xaml.cs">
       <DependentUpon>NewClassView.xaml</DependentUpon>
@@ -81,6 +96,12 @@
     <Compile Include="Views\SchoolPage.xaml.cs">
       <DependentUpon>SchoolPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StudentViews\ManageStudentsView.xaml.cs">
+      <DependentUpon>ManageStudentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentViews\ManageStudentView.xaml.cs">
+      <DependentUpon>ManageStudentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StudentViews\NewStudentView.xaml.cs">
       <DependentUpon>NewStudentView.xaml</DependentUpon>
     </Compile>
@@ -93,7 +114,27 @@
     <Compile Include="Views\TeacherViews\TeachersView.xaml.cs">
       <DependentUpon>TeachersView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AssignmentViews\AssignmentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AssignmentViews\ManageAssignmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AssignmentViews\NewAssignmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClassViews\ClassesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassViews\ClassView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassViews\ManageClassView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -122,6 +163,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\SchoolPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\ManageStudentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StudentViews\ManageStudentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

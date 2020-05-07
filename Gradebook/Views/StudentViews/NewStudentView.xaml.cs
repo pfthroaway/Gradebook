@@ -1,6 +1,7 @@
 ﻿using Extensions;
 using Gradebook.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,10 +24,17 @@ namespace Gradebook.Views.StudentViews
             TxtID.Clear();
             TxtFirstName.Clear();
             TxtLastName.Clear();
+            TxtID.Focus();
         }
 
         /// <summary>Saves a new <see cref="Student"/>.</summary>
-        private void Save() => School.NewStudent(new Student(TxtID.Text.Trim(), TxtFirstName.Text.Trim(), TxtLastName.Text.Trim(), new List<string>()));
+        private void Save()
+        {
+            if (!School.AllStudents.Any(student => student.Id == TxtID.Text.Trim()))
+                School.NewStudent(new Student(TxtID.Text.Trim(), TxtFirstName.Text.Trim(), TxtLastName.Text.Trim(), new List<string>()));
+            else
+                School.DisplayNotification("That ID has been taken. Please try a new ID.", "Gradebook");
+        }
 
         #region Click
 

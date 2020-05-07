@@ -1,6 +1,7 @@
 ﻿using Extensions;
 using Extensions.Enums;
 using Gradebook.Models.IO;
+using Gradebook.Views.StudentViews;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,6 +18,8 @@ namespace Gradebook.Models
         public static List<Teacher> AllTeachers = new List<Teacher>();
         public static List<Student> AllStudents = new List<Student>();
         public static List<Course> AllCourses = new List<Course>();
+        public static SchoolClass CurrentClass;
+        public static Student CurrentStudent;
 
         #region Navigation
 
@@ -100,7 +103,7 @@ namespace Gradebook.Models
         /// <param name="newClass"><see cref="SchoolClass"/> to be saved to disk</param>
         public static void NewClass(SchoolClass newClass)
         {
-            JSONInteraction.NewClass(newClass);
+            JSONInteraction.WriteClass(newClass);
             AllClasses.Add(newClass);
             AllClasses = AllClasses.OrderBy(cls => cls.Id).ToList();
         }
@@ -129,7 +132,7 @@ namespace Gradebook.Models
         /// <param name="newCourse"><see cref="Course"/> to be saved to disk</param>
         public static void NewCourse(Course newCourse)
         {
-            JSONInteraction.NewCourse(newCourse);
+            JSONInteraction.WriteCourse(newCourse);
             AllCourses.Add(newCourse);
             AllCourses = AllCourses.OrderBy(course => course.Number).ToList();
         }
@@ -150,19 +153,30 @@ namespace Gradebook.Models
                     cls.Students.RemoveAll(std => std.Equals(deleteStudent.Id, StringComparison.OrdinalIgnoreCase));
                     foreach (Assignment assignment in cls.Gradebook)
                         assignment.Grades.Remove(deleteStudent.Id);
-                    JSONInteraction.NewClass(cls);
+                    JSONInteraction.WriteClass(cls);
                 }
             }
             AllStudents.Remove(deleteStudent);
+        }
+
+        /// <summary>Modifies a passed <see cref="Student"/> on disk.</summary>
+        /// <param name="oldStudent">Old <see cref="Student"/></param>
+        /// <param name="newStudent">New <see cref="Student"/></param>
+        public static void ModifyStudent(Student oldStudent, Student newStudent)
+        {
+            if (oldStudent.Id != newStudent.Id)
+                JSONInteraction.DeleteStudent(oldStudent);
+            JSONInteraction.WriteStudent(newStudent);
+            AllStudents.Replace<Student>(oldStudent, newStudent);
         }
 
         /// <summary>Saves a <see cref="Student"/> to disk.</summary>
         /// <param name="newStudent"><see cref="Student"/> to be saved to disk</param>
         public static void NewStudent(Student newStudent)
         {
-            JSONInteraction.NewStudent(newStudent);
+            JSONInteraction.WriteStudent(newStudent);
             AllStudents.Add(newStudent);
-            AllStudents = AllStudents.OrderBy(course => course.Id).ToList();
+            AllStudents = AllStudents.OrderBy(student => student.Id).ToList();
         }
 
         #endregion Student Manipulation
@@ -179,7 +193,7 @@ namespace Gradebook.Models
                 if (cls.Teacher.Equals(deleteTeacher.Id, StringComparison.OrdinalIgnoreCase))
                 {
                     cls.Teacher = "";
-                    JSONInteraction.NewClass(cls);
+                    JSONInteraction.WriteClass(cls);
                 }
             }
             AllTeachers.Remove(deleteTeacher);

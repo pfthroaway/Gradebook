@@ -11,7 +11,6 @@ namespace Gradebook.Views.StudentViews
     /// <summary>Interaction logic for StudentsView.xaml</summary>
     public partial class StudentsView : Page
     {
-        private Student _selectedStudent;
         private List<Student> _allStudents;
         private ListViewSort _sort = new ListViewSort();
 
@@ -29,16 +28,14 @@ namespace Gradebook.Views.StudentViews
 
         private void BtnDeleteStudent_Click(object sender, RoutedEventArgs e)
         {
-            if (_selectedStudent != null && School.YesNoNotification($"Are you sure that you want to delete this student? It will affect {School.AllClasses.Where(cls => cls.Students.Any(std => std == _selectedStudent.Id)).ToList().Count} classes. This action cannot be undone.", "Gradebook"))
+            if (School.CurrentStudent != null && School.YesNoNotification($"Are you sure that you want to delete this student? It will affect {School.AllClasses.Where(cls => cls.Students.Any(std => std == School.CurrentStudent.Id)).ToList().Count} classes. This action cannot be undone.", "Gradebook"))
             {
-                School.DeleteStudent(_selectedStudent);
+                School.DeleteStudent(School.CurrentStudent);
                 RefreshItemsSource();
             }
         }
 
-        private void BtnModifyStudent_Click(object sender, RoutedEventArgs e)
-        {
-        }
+        private void BtnModifyStudent_Click(object sender, RoutedEventArgs e) => School.Navigate(new ManageStudentView());
 
         private void BtnBack_Click(object sender, RoutedEventArgs e) => School.GoBack();
 
@@ -48,7 +45,7 @@ namespace Gradebook.Views.StudentViews
             BtnDeleteStudent.IsEnabled = selected;
             BtnModifyStudent.IsEnabled = selected;
             if (selected)
-                _selectedStudent = (Student)LVStudents.SelectedValue;
+                School.CurrentStudent = (Student)LVStudents.SelectedValue;
         }
 
         private void LVStudentsColumnHeader_Click(object sender, RoutedEventArgs e) => _sort = Functions.ListViewColumnHeaderClick(sender, _sort, LVStudents, "#CCCCCC");

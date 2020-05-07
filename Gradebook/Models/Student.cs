@@ -53,6 +53,7 @@ namespace Gradebook.Models
         /// <param name="firstName">The <see cref="Student"/>'s first name</param>
         /// <param name="lastName">The <see cref="Student"/>'s first name</param>
         /// <param name="enrolledClasses">List of IDs for <see cref="SchoolClass"/>es in which the <see cref="Student"/> is currently enrolled</param>
+        [JsonConstructor]
         public Student(string id, string firstName, string lastName, List<string> enrolledClasses)
         {
             Id = id;
@@ -60,6 +61,14 @@ namespace Gradebook.Models
             LastName = lastName;
             EnrolledClasses = enrolledClasses;
         }
+
+        /// <summary>Initializes an instance of <see cref="Student"/> by using another <see cref="Student"/> and assigning values to Properties.</summary>
+        /// <param name="other">Other instance of <see cref="Student"/></param>
+        /// <param name="id">ID of the <see cref="Student"/></param>
+        /// <param name="firstName">The <see cref="Student"/>'s first name</param>
+        /// <param name="lastName">The <see cref="Student"/>'s first name</param>
+        public Student(Student other, string id, string firstName, string lastName) : this(id, firstName, lastName, other.EnrolledClasses)
+        { }
 
         #endregion Constructors
     }

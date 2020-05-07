@@ -24,7 +24,7 @@ namespace Gradebook.Models.IO
 
         /// <summary>Saves a <see cref="SchoolClass"/> to disk.</summary>
         /// <param name="newClass"><see cref="SchoolClass"/> to be saved to disk</param>
-        public static void NewClass(SchoolClass newClass)
+        public static void WriteClass(SchoolClass newClass)
         {
             if (!Directory.Exists(ClassesFolderLocation))
                 Directory.CreateDirectory(ClassesFolderLocation);
@@ -45,7 +45,7 @@ namespace Gradebook.Models.IO
 
         /// <summary>Saves a <see cref="Course"/> to disk.</summary>
         /// <param name="newCourse"><see cref="Course"/> to be saved to disk</param>
-        public static void NewCourse(Course newCourse)
+        public static void WriteCourse(Course newCourse)
         {
             if (!Directory.Exists(CoursesFolderLocation))
                 Directory.CreateDirectory(CoursesFolderLocation);
@@ -66,7 +66,7 @@ namespace Gradebook.Models.IO
 
         /// <summary>Saves a <see cref="Student"/> to disk.</summary>
         /// <param name="newStudent"><see cref="Student"/> to be saved to disk</param>
-        public static void NewStudent(Student newStudent)
+        public static void WriteStudent(Student newStudent)
         {
             if (!Directory.Exists(StudentsFolderLocation))
                 Directory.CreateDirectory(StudentsFolderLocation);

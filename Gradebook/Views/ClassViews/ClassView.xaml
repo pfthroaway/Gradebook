@@ -1,0 +1,16 @@
+﻿<Page x:Class="Gradebook.Views.ClassViews.ClassView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Style="{StaticResource PageStyle}"
+      Loaded="Page_Loaded">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="TxtClassName" Width="1920" TextAlignment="Center" Margin="0,0,0,10" />
+        <Button x:Name="BtnManageAssignments" Width="400" Content="Manage _Assignments" Click="BtnManageAssignments_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnManageStudents" Width="400" Content="Manage _Students" Click="BtnManageStudents_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnManageClass" Width="400" Content="Manage _Class Info" Click="BtnManageClass_Click" Margin="0,0,0,10" />
+        <Button x:Name="BtnBack" Width="400" Content="_Back" Click="BtnBack_Click" IsCancel="True" />
+    </StackPanel>
+</Page>
